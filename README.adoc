@@ -33,3 +33,8 @@ chip8-interpreter-rust --program-file ../relative/path/to/program
 ```sh
 cargo test
 ```
+
+## Resources
+* http://devernay.free.fr/hacks/chip8/C8TECH10.HTM[Cowgod's Chip-8 Technical Reference v1.0]
+* http://mattmik.com/files/chip8/mastering/chip8.html[Mastering Chip-8 By Matthew Mikolay]
+* https://en.wikipedia.org/wiki/CHIP-8[CHIP-8 Wikipedia]
