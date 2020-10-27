@@ -420,7 +420,10 @@ impl Processor {
     // Set I = I + Vx. 
     fn op_Fx1E(&mut self, x: usize) {
         self.I += self.V[x] as usize;
-        self.V[0xF] = if self.I > 0xFFF { 1 } else { 0 };
+
+        // Most implementations do not set VF in case of an overflow
+        // https://github.com/Chromatophore/HP48-Superchip/issues/2
+        // self.V[0xF] = if self.I > 0xFFF { 1 } else { 0 };
 
         self.pc.goto_next();
     }
