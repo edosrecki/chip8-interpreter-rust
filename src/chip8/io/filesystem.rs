@@ -4,7 +4,10 @@ use std::path::PathBuf;
 
 const PROGRAM_SIZE_MAX: usize = 3584;
 
-type Program = [u8; PROGRAM_SIZE_MAX];
+pub struct Program {
+    pub name: String,
+    pub rom: [u8; PROGRAM_SIZE_MAX],
+}
 
 pub struct Filesystem {
     root: PathBuf,
@@ -44,21 +47,32 @@ impl Filesystem {
         };
         let size = data.len();
 
-        let mut buffer = [0u8; PROGRAM_SIZE_MAX];
-        buffer[0..size].copy_from_slice(data);
+        let mut rom = [0u8; PROGRAM_SIZE_MAX];
+        rom[0..size].copy_from_slice(data);
 
-        Ok(buffer)
+        Ok(Program {
+            name: name.to_uppercase(),
+            rom,
+        })
     }
 
     pub fn load_program_file(&self, path: &str) -> Result<Program, String> {
         let path = self.root.join(path);
+        let name = path.file_stem()
+            .and_then(|stem| stem.to_str())
+            .map(|name| name.to_uppercase())
+            .ok_or("Cannot extract program name from file path")?;
+
         let mut file = File::open(&path)
             .map_err(|e| e.to_string())?;
 
-        let mut buffer = [0u8; PROGRAM_SIZE_MAX];
-        file.read(&mut buffer)
+        let mut rom = [0u8; PROGRAM_SIZE_MAX];
+        file.read(&mut rom)
             .map_err(|e| e.to_string())?;
 
-        Ok(buffer)
+        Ok(Program {
+            name,
+            rom,
+        })
     }
 }

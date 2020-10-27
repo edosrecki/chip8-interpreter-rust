@@ -10,13 +10,14 @@ pub struct Display {
 }
 
 impl Display {
-    pub fn new(sdl: &Sdl, scale: u32) -> Result<Self, String> {
+    pub fn new(sdl: &Sdl, title: String, scale: u32) -> Result<Self, String> {
+        let title = format!("{} - {}", WINDOW_TITLE, title);
         let width = (CHIP8_WIDTH as u32) * scale;
         let height = (CHIP8_HEIGHT as u32) * scale;
 
         let video = sdl.video()?;
         let window = video
-            .window(WINDOW_TITLE, width, height)
+            .window(&title, width, height)
             .position_centered()
             .opengl()
             .build()
