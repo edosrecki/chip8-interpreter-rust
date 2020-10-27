@@ -1,0 +1,21 @@
+# https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[package]
+name = "chip8-interpreter-rust"
+version = "0.1.0"
+edition = "2018"
+description = "An interpreter (emulator) for the CHIP-8 programming language."
+authors = ["Dinko Osrecki"]
+license-file = "LICENSE"
+readme = "README.adoc"
+categories = ["emulators"]
+keywords = ["chip-8", "chip8", "interpreter", "emulator"]
+repository = "https://github.com/osrecki/chip8-interpreter-rust"
+
+[dependencies]
+clap = "2.33.3"
+fps_clock = "2.0.0"
+lazy_static = "1.4.0"
+maplit = "1.0.2"
+rand = "0.7.3"
+sdl2 = { version = "0.34.3", default-features = false, features = ["gfx"] }

@@ -1,0 +1,9 @@
+## Introduction
+TODO
+
+## Requirements
+* Install https://www.rust-lang.org/tools/install[Rust]
+* Install https://github.com/Rust-SDL2/rust-sdl2#sdl20-development-libraries[SDL2.0] development libraries (`sdl2` and `sdl2_gfx`)
+
+## Run
+TODO
