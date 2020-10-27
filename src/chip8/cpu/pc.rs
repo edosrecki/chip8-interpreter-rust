@@ -31,9 +31,3 @@ impl ProgramCounter {
         self.pc = address;
     }
 }
-
-impl From<ProgramCounter> for usize {
-    fn from(program_counter: ProgramCounter) -> Self {
-        program_counter.pc
-    }
-}
