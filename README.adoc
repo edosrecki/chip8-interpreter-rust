@@ -1,11 +1,24 @@
-## Introduction
-TODO
+:toc: macro
+:toc-title:
+:toclevels: 10
 
-## Requirements
+= CHIP-8 Interpreter in Rust
+
+image:docs/screenshot.png[]
+
+CHIP-8 is an interpreted programming language which was initially used on microcomputers in 1970s. It was made to allow video games to be more easily programmed for those computers.
+
+This is a CHIP-8 interpreter written in Rust programming language. It contains 23 built-in CHIP-8 games (see link:programs/[] directory).
+
+---
+
+toc::[]
+
+== Requirements
 * Install https://www.rust-lang.org/tools/install[Rust]
 * Install https://github.com/Rust-SDL2/rust-sdl2#sdl20-development-libraries[SDL2.0] development libraries (`sdl2` and `sdl2_gfx`)
 
-## Build
+== Build
 ```sh
 # Debug mode
 cargo build
@@ -14,7 +27,7 @@ cargo build
 cargo build --release
 ```
 
-## Run
+== Run
 Run either by using binary built in the previous step, or by executing `cargo run`.
 
 ```sh
@@ -29,12 +42,24 @@ chip8-interpreter-rust --program-file /absolute/path/to/program
 chip8-interpreter-rust --program-file ../relative/path/to/program
 ```
 
-## Test
+== Test
 ```sh
 cargo test
 ```
 
-## Resources
+== Keyboard
+This is the key mapping between modern (QWERTY) keyboard and the original CHIP-8 keypad.
+
+```
+QWERTY        |    Original
+------------------------------------
+1  2  3  4    |    1  2  3  C
+Q  W  E  R    |    4  5  6  D
+A  S  D  F    |    7  8  9  E
+Z  X  C  V    |    A  0  B  F
+```
+
+== Resources
 * http://devernay.free.fr/hacks/chip8/C8TECH10.HTM[Cowgod's Chip-8 Technical Reference v1.0]
 * http://mattmik.com/files/chip8/mastering/chip8.html[Mastering Chip-8 By Matthew Mikolay]
 * https://en.wikipedia.org/wiki/CHIP-8[CHIP-8 Wikipedia]
