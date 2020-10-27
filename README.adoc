@@ -26,6 +26,7 @@ chip8-interpreter-rust --program invaders
 
 # Run program from file
 chip8-interpreter-rust --program-file /absolute/path/to/program
+chip8-interpreter-rust --program-file ../relative/path/to/program
 ```
 
 ## Test

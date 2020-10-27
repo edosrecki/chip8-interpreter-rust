@@ -25,8 +25,7 @@ pub fn run() {
         .expect("Cannot initialize Sound");
 
     let root = current_dir()
-        .expect("Cannot get current directory")
-        .join("programs");
+        .expect("Cannot get current directory");
 
     let filesystem = Filesystem::new(root);
 
