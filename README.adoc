@@ -5,5 +5,30 @@ TODO
 * Install https://www.rust-lang.org/tools/install[Rust]
 * Install https://github.com/Rust-SDL2/rust-sdl2#sdl20-development-libraries[SDL2.0] development libraries (`sdl2` and `sdl2_gfx`)
 
+## Build
+```sh
+# Debug mode
+cargo build
+
+# Release mode
+cargo build --release
+```
+
 ## Run
-TODO
+Run either by using binary built in the previous step, or by executing `cargo run`.
+
+```sh
+# Show usage
+chip8-interpreter-rust --help
+
+# Run built-in program
+chip8-interpreter-rust --program invaders
+
+# Run program from file
+chip8-interpreter-rust --program-file /absolute/path/to/program
+```
+
+## Test
+```sh
+cargo test
+```
