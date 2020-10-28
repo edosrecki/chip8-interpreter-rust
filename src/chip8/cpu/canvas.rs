@@ -59,3 +59,7 @@ impl Canvas {
         self.have_pixels_changed = false;
     }
 }
+
+#[cfg(test)]
+#[path = "./canvas_test.rs"]
+mod canvas_test;

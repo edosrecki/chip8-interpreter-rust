@@ -457,7 +457,7 @@ impl Processor {
         self.pc.goto_next();
     }
 
-    //  Read into registers V0 through Vx from memory starting at location I.
+    // Read into registers V0 through Vx from memory starting at location I.
     fn op_Fx65(&mut self, x: usize) {
         for offset in 0..=x {
             self.V[offset] = self.memory[self.I + offset];
@@ -466,3 +466,7 @@ impl Processor {
         self.pc.goto_next();
     }
 }
+
+#[cfg(test)]
+#[path = "./processor_test.rs"]
+mod processor_test;

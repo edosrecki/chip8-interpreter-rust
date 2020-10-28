@@ -31,3 +31,7 @@ impl ProgramCounter {
         self.pc = address;
     }
 }
+
+#[cfg(test)]
+#[path = "./pc_test.rs"]
+mod pc_test;

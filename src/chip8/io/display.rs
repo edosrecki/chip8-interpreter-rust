@@ -11,7 +11,7 @@ pub struct Display {
 
 impl Display {
     pub fn new(sdl: &Sdl, title: String, scale: u32) -> Result<Self, String> {
-        let title = format!("{} - {}", WINDOW_TITLE, title);
+        let title = format!("{} - {}", WINDOW_TITLE, title.to_uppercase());
         let width = (CHIP8_WIDTH as u32) * scale;
         let height = (CHIP8_HEIGHT as u32) * scale;
 

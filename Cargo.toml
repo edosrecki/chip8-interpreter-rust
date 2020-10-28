@@ -19,3 +19,7 @@ lazy_static = "1.4.0"
 maplit = "1.0.2"
 rand = "0.7.3"
 sdl2 = { version = "0.34.3", default-features = false, features = ["gfx"] }
+
+[dev-dependencies]
+speculate = "0.1.2"
+tempfile = "3.1.0"

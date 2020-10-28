@@ -7,6 +7,7 @@ const PROGRAM_SIZE_MAX: usize = 3584;
 pub struct Program {
     pub name: String,
     pub rom: [u8; PROGRAM_SIZE_MAX],
+    pub size: usize,
 }
 
 pub struct Filesystem {
@@ -51,8 +52,9 @@ impl Filesystem {
         rom[0..size].copy_from_slice(data);
 
         Ok(Program {
-            name: name.to_uppercase(),
+            name: name.to_owned(),
             rom,
+            size,
         })
     }
 
@@ -60,19 +62,23 @@ impl Filesystem {
         let path = self.root.join(path);
         let name = path.file_stem()
             .and_then(|stem| stem.to_str())
-            .map(|name| name.to_uppercase())
             .ok_or("Cannot extract program name from file path")?;
 
         let mut file = File::open(&path)
             .map_err(|e| e.to_string())?;
 
         let mut rom = [0u8; PROGRAM_SIZE_MAX];
-        file.read(&mut rom)
+        let size = file.read(&mut rom)
             .map_err(|e| e.to_string())?;
 
         Ok(Program {
-            name,
+            name: name.to_owned(),
             rom,
+            size,
         })
     }
 }
+
+#[cfg(test)]
+#[path = "./filesystem_test.rs"]
+mod filesystem_test;

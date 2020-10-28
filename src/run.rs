@@ -17,7 +17,7 @@ pub fn run() {
 
     let filesystem = Filesystem::new(root);
 
-    let Program { name, rom } = match program {
+    let Program { name, rom, .. } = match program {
         ProgramArg::BuiltInProgram(name) => filesystem.load_built_in_program(&name),
         ProgramArg::ProgramFile(path)    => filesystem.load_program_file(&path),
     }.expect("Cannot load program");
