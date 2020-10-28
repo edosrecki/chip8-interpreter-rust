@@ -1,0 +1,33 @@
+name: Continous Integration
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        toolchain:
+          - nightly
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Configure Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: ${{ matrix.toolchain }}
+          override: true
+          components: clippy
+
+      - name: Lint code
+        uses: actions-rs/cargo@v1
+        with:
+          command: clippy
+
+      - name: Test code
+        uses: actions-rs/cargo@v1
+        with:
+          command: test
