@@ -2,6 +2,8 @@
 :toc-title:
 :toclevels: 10
 
+image:https://github.com/edosrecki/chip8-interpreter-rust/workflows/Build/badge.svg["Build Status", link="https://github.com/edosrecki/chip8-interpreter-rust/actions"]
+
 = CHIP-8 Interpreter in Rust
 
 image:docs/screenshot.png[]
@@ -15,7 +17,7 @@ This is a CHIP-8 interpreter written in Rust programming language. It contains 2
 toc::[]
 
 == Requirements
-* Install https://www.rust-lang.org/tools/install[Rust]
+* Install https://www.rust-lang.org/tools/install[Rust] nightly
 * Install https://github.com/Rust-SDL2/rust-sdl2#sdl20-development-libraries[SDL2.0] development libraries (`sdl2` and `sdl2_gfx`)
 
 == Build

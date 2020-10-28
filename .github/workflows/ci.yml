@@ -1,24 +1,30 @@
-name: Continous Integration
+name: Build
 
 on: [push, pull_request]
 
 jobs:
   test:
     name: Test
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        toolchain:
-          - nightly
-
+        os: [macos-latest, ubuntu-latest]
+        include:
+          - os: macos-latest
+            sdl2: brew install sdl2 sdl2_gfx
+          - os: ubuntu-latest
+            sdl2: sudo apt-get install libsdl2-dev libsdl2-gfx-dev
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Install SDL2
+        run: ${{ matrix.sdl2 }}
+
       - name: Configure Rust
         uses: actions-rs/toolchain@v1
         with:
-          toolchain: ${{ matrix.toolchain }}
+          toolchain: nightly
           override: true
           components: clippy
 
