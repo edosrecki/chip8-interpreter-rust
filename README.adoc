@@ -18,8 +18,20 @@ This is a CHIP-8 interpreter written in Rust programming language. It contains 2
 toc::[]
 
 == Requirements
-* Install https://www.rust-lang.org/tools/install[Rust] nightly
+* Install https://www.rust-lang.org/tools/install[`rustup`]
+* Install Rust nightly
+```sh
+rustup default nightly
+rustc --version
+```
 * Install https://github.com/Rust-SDL2/rust-sdl2#sdl20-development-libraries[SDL2.0] development libraries (`sdl2` and `sdl2_gfx`)
+```sh
+# MacOS
+brew install sdl2 sdl2_gfx
+
+# Ubuntu
+sudo apt-get install libsdl2-dev libsdl2-gfx-dev
+```
 
 == Build
 ```sh
