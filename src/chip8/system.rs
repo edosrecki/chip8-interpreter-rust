@@ -9,7 +9,7 @@ use super::interface::{Input, Output};
 const FREQUENCY: u32 = 60;
 const CPU_SPEED_FACTOR: u32 = 9; // 540 Hz
 
-pub struct Runner {
+pub struct System {
     clock: FpsClock,
     display: Display,
     keypad: Keypad,
@@ -17,9 +17,9 @@ pub struct Runner {
     processor: Processor,
 }
 
-impl Runner {
+impl System {
     pub fn new(display: Display, keypad: Keypad, sound: Sound, processor: Processor) -> Self {
-        Runner {
+        System {
             clock: FpsClock::new(FREQUENCY),
             display,
             keypad,

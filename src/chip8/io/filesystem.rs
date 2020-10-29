@@ -1,6 +1,8 @@
 use std::fs::File;
 use std::io::prelude::*;
 use std::path::PathBuf;
+use std::env::current_dir;
+use crate::args::ProgramArg;
 
 const PROGRAM_SIZE_MAX: usize = 3584;
 
@@ -17,6 +19,26 @@ pub struct Filesystem {
 impl Filesystem {
     pub fn new(root: PathBuf) -> Self {
         Filesystem{ root }
+    }
+
+    pub fn at_current_dir() -> Result<Self, String> {
+        let root = current_dir()
+            .map_err(|e| e.to_string())?;
+
+        debug!("Current directory: {:?}", root);
+
+        Ok(Self::new(root))
+    }
+
+    pub fn load_program(&self, arg: ProgramArg) -> Result<Program, String> {
+        let program = match arg {
+            ProgramArg::BuiltInProgram(name) => self.load_built_in_program(&name),
+            ProgramArg::ProgramFile(path)    => self.load_program_file(&path),
+        }?;
+
+        debug!("Loaded program: name={}, size={}B", program.name, program.size);
+
+        Ok(program)
     }
 
     pub fn load_built_in_program(&self, name: &str) -> Result<Program, String> {
@@ -51,6 +73,8 @@ impl Filesystem {
         let mut rom = [0u8; PROGRAM_SIZE_MAX];
         rom[0..size].copy_from_slice(data);
 
+        debug!("Loaded built-in program: name={}, size={}", name, size);
+
         Ok(Program {
             name: name.to_owned(),
             rom,
@@ -70,6 +94,8 @@ impl Filesystem {
         let mut rom = [0u8; PROGRAM_SIZE_MAX];
         let size = file.read(&mut rom)
             .map_err(|e| e.to_string())?;
+
+        debug!("Loaded program from file: name={}, size={}, path={:?}", name, size, path);
 
         Ok(Program {
             name: name.to_owned(),

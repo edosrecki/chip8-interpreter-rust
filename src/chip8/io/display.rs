@@ -33,6 +33,8 @@ impl Display {
         };
         display.clear();
 
+        debug!("Initialised display: width={}, height={}, scale={}", width, height, scale);
+
         Ok(display)
     }
 

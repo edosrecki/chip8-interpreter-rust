@@ -2,6 +2,7 @@ use clap::{App, Arg};
 
 use super::constants::{BUILT_IN_PROGRAMS, WINDOW_SCALE_DEFAULT};
 
+#[derive(Debug)]
 pub enum ProgramArg {
     BuiltInProgram(String),
     ProgramFile(String),
@@ -55,6 +56,8 @@ impl Args {
             .map(|p| ProgramArg::ProgramFile(p.to_owned()));
 
         let program = built_in_program.unwrap_or_else(|| program_file.unwrap());
+
+        debug!("Parsed CLI arguments: window_scale={:?}, program={:?}", window_scale, program);
 
         Ok(Args {
             window_scale,
