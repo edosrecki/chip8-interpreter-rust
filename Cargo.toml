@@ -10,7 +10,7 @@ license-file = "LICENSE"
 readme = "README.adoc"
 categories = ["emulators"]
 keywords = ["chip-8", "chip8", "interpreter", "emulator"]
-repository = "https://github.com/osrecki/chip8-interpreter-rust"
+repository = "https://github.com/edosrecki/chip8-interpreter-rust"
 
 [dependencies]
 clap = "2.33.3"
